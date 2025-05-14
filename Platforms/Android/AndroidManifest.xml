@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application 
+        android:allowBackup="true" 
+        android:icon="@mipmap/appicon" 
+        android:roundIcon="@mipmap/appicon_round" 
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"> <!-- Allow HTTP traffic -->
+
+        <!-- Declare the service -->
+        <service 
+            android:name=".Platforms.Android.AccelerometerService" 
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+    </application>
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Required for foregroundServiceType="dataSync" on Android 14 (API 34) if targeting API 34+ -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" /> 
+    <!-- Required for showing notifications on Android 13 (API 33) and higher -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+    <!-- Feature declaration for accelerometer -->
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
+
+    <uses-sdk />
+</manifest>
